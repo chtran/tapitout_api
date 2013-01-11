@@ -1,6 +1,10 @@
 Tapitout::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => "sessions"}
+
+  devise_scope :user do
+    resources :sessions, :only => [:create, :destroy]
+  end
 
   resources :token_authentications, :only => [:create, :destroy]
   resources :transactions, only: [:create] do
