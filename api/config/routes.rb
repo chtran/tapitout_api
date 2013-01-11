@@ -1,4 +1,11 @@
 Tapitout::Application.routes.draw do
+
+  resources :transactions, only: [:create] do
+    member do
+      post 'confirm'
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
