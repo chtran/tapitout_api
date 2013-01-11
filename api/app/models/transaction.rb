@@ -1,6 +1,19 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id          :integer          not null, primary key
+#  receiver_id :integer
+#  sender_id   :integer
+#  amount      :integer
+#  status      :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Transaction < ActiveRecord::Base
 	
-  attr_accessible :amount, :receiver_id, :sender_id, :status
+  attr_accessible :amount, :receiver_id
 
   validates :amount, :presence => true, :numericality => { :only_integer => true }
   validates :receiver_id, :presence => true

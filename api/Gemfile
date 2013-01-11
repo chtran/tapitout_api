@@ -25,6 +25,8 @@ gem 'rabl'
 gem 'oj'
 gem 'thin'
 gem 'rspec-rails'
+gem 'annotate'
+gem 'factory_girl_rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
