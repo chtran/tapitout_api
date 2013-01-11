@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130111230727) do
-=======
 ActiveRecord::Schema.define(:version => 20130111234557) do
->>>>>>> 79186b52540dd6aa36c65690cdcc3450392b5e7d
 
   create_table "transactions", :force => true do |t|
     t.integer  "receiver_id"
