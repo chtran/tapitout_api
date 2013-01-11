@@ -143,11 +143,8 @@ PLATFORMS
 DEPENDENCIES
   annotate
   coffee-rails (~> 3.2.1)
-<<<<<<< HEAD
-  factory_girl_rails
-=======
   devise
->>>>>>> 42c2dd19bafdd5e392c2853c97e541154dd157aa
+  factory_girl_rails
   jquery-rails
   oj
   rabl
