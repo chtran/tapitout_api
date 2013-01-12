@@ -34,6 +34,7 @@
 	        android:layout_width = "160dp"
 	        android:layout_height = "wrap_content"
 	        android:background = "@color/white"
+	        android:textColor="@color/black"
 	        android:hint= "@string/hint"
 	        android:digits="0123456789."/>
     </LinearLayout>

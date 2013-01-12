@@ -33,13 +33,16 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="MenuActivity"></activity>
+        <activity android:name="SignUpActivity"></activity>
+        <activity android:name="TransactionActivity"></activity>
+        <activity android:name="WaitingActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="application/com.example.android.beam" />
             </intent-filter>
         </activity>
-        <activity android:name="MenuActivity"></activity>
-        <activity android:name="SignUpActivity"></activity>
     </application>
 </manifest>
