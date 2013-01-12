@@ -12,15 +12,16 @@
     <TextView
         android:layout_width ="wrap_content"
         android:layout_height = "match_parent"
-        android:text="@string/username"
+        android:text="@string/email"
     	android:padding="10dp"
    		android:textSize="18sp"
         android:orientation="vertical"/>
     <EditText 
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width = "fill_parent"
         android:layout_height = "match_parent"        
         android:background="@color/white"
+        android:textColor="@color/black"
         android:layout_marginBottom = "20dp"
         android:inputType = "none"/>
     </LinearLayout>
@@ -40,6 +41,7 @@
         android:layout_width = "fill_parent"
         android:layout_height = "match_parent"
         android:background="@color/white"
+        android:textColor="@color/black"
         android:layout_marginBottom = "20dp"
         android:inputType="textPassword"
         />
@@ -53,12 +55,14 @@
          	android:layout_width="wrap_content"
     		android:layout_height="match_parent"
     		android:layout_marginBottom = "20dp"
-    		android:text="@string/login"/>
+    		android:text="@string/login"
+    		android:onClick="processLogIn" />
         <Button 
          	android:layout_width="wrap_content"
     		android:layout_height="match_parent"
     		android:layout_marginBottom = "20dp"
-    		android:text="@string/signup"/>
+    		android:text="@string/signup"
+    		android:onClick="launchSignUp" />
     </LinearLayout>
         
            

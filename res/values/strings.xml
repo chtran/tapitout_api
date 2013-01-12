@@ -6,10 +6,12 @@
     <string name="button_addcard">Add Payment Method</string>
     <string name="button_transaction">Make A Transaction</string>
     <string name="button_quit">Quit</string>
-    <string name= "password">password</string>
-    <string name = "username">username</string>
+    <string name= "password">Password</string>
+    <string name = "email">Email</string>
     <string name = "login">Login</string>
     <string name ="signup">Sign Up</string>
     <string name = "cpassword">confirm password</string>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <string name="api_base">http://tapitout.herokuapp.com/</string>
 </resources>
