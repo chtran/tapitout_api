@@ -11,7 +11,18 @@
     <string name = "login">Login</string>
     <string name ="signup">Sign Up</string>
     <string name = "cpassword">confirm password</string>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
     <string name="api_base">http://tapitout.herokuapp.com/</string>
+    <string name = "balance">Balance</string>
+    <string name = "howMuch">How much do you wish to send</string>
+    <string name = "ok">OK!</string>
+    <string name = "cancel">Cancel</string>
+    <string name = "money">$</string>
+    <string name = "hint">Enter your amount</string>
+    <string name = "yes">Yes!</string>
+    <string name = "no">No!</string>
+
+	<color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    
+
 </resources>
