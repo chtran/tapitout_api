@@ -28,7 +28,7 @@ public class SignUpActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.signup);
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
     
@@ -71,7 +71,10 @@ public class SignUpActivity extends Activity {
 			params.add(new BasicNameValuePair("user[email]", email));
 			params.add(new BasicNameValuePair("user[password]", password));
 			params.add(new BasicNameValuePair("user[name]", name));
-			
+			System.out.println(email);
+			System.out.println(password);
+			System.out.println(name);
+
 			post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 			post.setHeader("Accept", "application/json");
 			
@@ -91,7 +94,7 @@ public class SignUpActivity extends Activity {
 		}
 		catch(Exception e)
 		{
-//			e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
     }
