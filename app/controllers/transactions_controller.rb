@@ -2,7 +2,16 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-
+    @transaction = current_user.sent_transactions.find_by_id(params[:id]) || current_user.received_transactions.find_by_id(params[:id])
+    if @transaction.nil?
+      respond_to do |format|
+        format.json { render json: { error: "Invalid transaction id" } }
+      end
+    else
+      respond_to do |format|
+        format.json { render "transaction" }
+      end
+    end
   end
 
   def create
