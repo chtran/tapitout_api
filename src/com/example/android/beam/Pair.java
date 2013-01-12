@@ -1,3 +1,4 @@
+package com.example.android.beam;
 public class Pair<A, B>
 {
     private A first;
