@@ -12,6 +12,26 @@
 	        <TextView
 		        android:layout_width ="wrap_content"
 		        android:layout_height = "match_parent"
+		        android:text="@string/name"
+		    	android:padding="10dp"
+		   		android:textSize="18sp"
+		        android:orientation="vertical"/>
+	   		<EditText 
+		        android:id="@+id/name"
+		        android:layout_width = "fill_parent"
+		        android:layout_height = "match_parent"        
+		        android:background="@color/white"
+		        android:textColor="@color/black"
+		        android:inputType = "none"/>
+   		</LinearLayout>
+    	<LinearLayout
+	        android:layout_width = "fill_parent"
+	        android:layout_height = "wrap_content"
+	        android:orientation = "horizontal"
+	        android:layout_marginBottom = "20dp">
+	        <TextView
+		        android:layout_width ="wrap_content"
+		        android:layout_height = "match_parent"
 		        android:text="@string/email"
 		    	android:padding="10dp"
 		   		android:textSize="18sp"
@@ -37,14 +57,14 @@
 		   		android:textSize="18sp"
 		        android:orientation="vertical"/>
 	   		<EditText 
-		        android:id="@+id/pass"
+		        android:id="@+id/password"
 		        android:layout_width = "fill_parent"
 		        android:layout_height = "match_parent"        
 		        android:background="@color/white"
 		        android:textColor="@color/black"
-		        android:inputType = "none"/>
+		        android:inputType = "textPassword"/>
 	   	</LinearLayout>
-    	<LinearLayout
+    	<!-- <LinearLayout
 	        android:layout_width = "fill_parent"
 	        android:layout_height = "wrap_content"
 	        android:orientation = "horizontal"
@@ -52,18 +72,18 @@
 	        <TextView
 		        android:layout_width ="wrap_content"
 		        android:layout_height = "match_parent"
-		        android:text="@string/cpassword"
+		        android:text="@string/confirm_password"
 		    	android:padding="10dp"
 		   		android:textSize="18sp"
 		        android:orientation="vertical"
 		        />
 	   		<EditText 
-		        android:id="@+id/confirmpass"
+		        android:id="@+id/confirm_password"
 		        android:layout_width = "fill_parent"
 		        android:layout_height = "match_parent"        
 		        android:background="@color/white"
 		        android:inputType = "none"/>
-	   	</LinearLayout>
+	   	</LinearLayout>-->
 	   	<LinearLayout
 	   	    android:layout_width = "fill_parent"
 	   	    android:layout_height="wrap_content"
@@ -75,7 +95,8 @@
          	android:layout_width="wrap_content"
     		android:layout_height="match_parent"
     		android:layout_marginBottom = "20dp"
-    		android:text="@string/signup"/>
+    		android:text="@string/signup"
+    		android:onClick="processSignUp"/>
     		</LinearLayout>
     
     
