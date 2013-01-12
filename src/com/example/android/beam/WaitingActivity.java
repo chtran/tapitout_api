@@ -50,10 +50,8 @@ public class WaitingActivity extends Activity implements CreateNdefMessageCallba
     public NdefMessage createNdefMessage(NfcEvent event) {
         Time time = new Time();
         time.setToNow();
-        String text = ("Beam me up!\n\n" +
-                "Beam Time: " + time.format("%H:%M:%S"));
-        NdefMessage msg = new NdefMessage(NdefRecord.createMime(
-                "application/com.example.android.beam", text.getBytes())
+
+        NdefMessage msg = new NdefMessage(NdefRecord.createMime("application/com.example.android.beam", transactionId.toString().getBytes())
          /**
           * The Android Application Record (AAR) is commented out. When a device
           * receives a push with an AAR in it, the application specified in the AAR
