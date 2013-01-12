@@ -39,7 +39,11 @@ describe Transaction do
       @url = "/transactions/#{@transaction.id}/confirm"
 
       @params = {
-        status: 1
+        :transaction => {
+          :status => 1
+        },
+        :email => @sender.email,
+        :auth_token => @sender.authentication_token
       }
     end
 
@@ -49,14 +53,14 @@ describe Transaction do
     end
 
     it "should cancel the transaction" do
-      @params[:status] = 2
+      @params[:transaction][:status] = 2
 
       post @url, @params
       Transaction.find_by_id(@transaction.id).status.should == 2
     end
 
     it "should not allow an invalid status" do
-      @params[:status] = 24
+      @params[:transaction][:status] = 24
 
       post @url, @params
       Transaction.find_by_id(@transaction.id).status.should == 0

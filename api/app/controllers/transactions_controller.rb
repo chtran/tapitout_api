@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
+  before_filter :authenticate_user!
+
   def create
-  @transaction = current_user.sent_transactions.new(params[:transaction])
+    @transaction = current_user.sent_transactions.new(params[:transaction])
     if @transaction.valid?
       @transaction.save
 
