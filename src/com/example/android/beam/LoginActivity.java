@@ -43,20 +43,16 @@ public class LoginActivity extends Activity {
     {
     	t = new Thread() {
 			public void run() {
-//				try {
 				Looper.prepare();
-					if(logIn())
-					{
-				    	Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-				    	startActivity(intent);
-					}
-					else
-					{
-						Toast.makeText(getApplicationContext(), "Sign in failed. Please verify username and password.", Toast.LENGTH_LONG).show();
-					}
-//				} catch (Exception e) {
-					
-//				}
+				if(logIn())
+				{
+			    	Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+			    	startActivity(intent);
+				}
+				else
+				{
+					Toast.makeText(getApplicationContext(), "Sign in failed. Please verify username and password.", Toast.LENGTH_LONG).show();
+				}
 				Looper.loop();
 			}
 		};
