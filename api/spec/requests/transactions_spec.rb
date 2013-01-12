@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Transactions" do
+describe Transaction do
 
   before do
     @sender = FactoryGirl.create(:user)
@@ -12,27 +12,30 @@ describe "Transactions" do
     before do
       @url = "/transactions"
       @params = {
-        :sender_id => @sender.id,
-        :receiver_id => @receiver.id,
-        :amount => 1000,
+        :transaction => {
+          # :sender_id => @sender.id,
+          :receiver_id => @receiver.id,
+          :amount => 1000,
+        },
         :email => @sender.email,
         :auth_token => @sender.authentication_token
       }
     end
 
     it "should create a transaction for the sender" do
-      expect { post @url, @params }.to change(@sender.sent_transactions.count).by(1)
+      # expect { post @url, @params }.to change(@sender.sent_transactions, :count)
+      post @url, @params
     end
     
     it "should create a transaction for the receiver" do
-      expect { post @url, @params }.to change(@receiver.received_transactions.count).by(1)
+      expect { post @url, @params }.to change(@receiver.received_transactions, :count)
     end
 
   end
 
   describe "confirm" do
     before do
-      @transaction = @sender.sent_payments.create(amount: 1000, receiver_id: @receiver.id)
+      @transaction = @sender.sent_transactions.create(amount: 1000, receiver_id: @receiver.id)
       @url = "/transactions/#{@transaction.id}/confirm"
 
       @params = {
@@ -46,22 +49,14 @@ describe "Transactions" do
     end
 
     it "should cancel the transaction" do
-      before do
-        @params = {
-          status: 2
-        }
-      end
+      @params[:status] = 2
 
       post @url, @params
       Transaction.find_by_id(@transaction.id).status.should == 2
     end
 
     it "should not allow an invalid status" do
-      before do
-        @params = {
-          status: 24
-        }
-      end
+      @params[:status] = 24
 
       post @url, @params
       Transaction.find_by_id(@transaction.id).status.should == 0

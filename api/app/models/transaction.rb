@@ -22,5 +22,12 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :sender, :class_name => "User"
   belongs_to :receiver, :class_name => "User"
+
+  before_validation :set_status
+
+private
+  def set_status
+    self.status = 0 unless status.present?
+  end
   
 end

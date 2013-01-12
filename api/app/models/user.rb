@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+
+  has_many :sent_transactions, class_name: "Transaction", foreign_key: "sender_id"
+  has_many :received_transactions, class_name: "Transaction", foreign_key: "receiver_id"
 end

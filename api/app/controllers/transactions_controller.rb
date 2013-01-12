@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   def create
-  @transaction = Transaction.new(params[:transaction])
+  @transaction = current_user.sent_transactions.new(params[:transaction])
     if @transaction.valid?
       @transaction.save
 
