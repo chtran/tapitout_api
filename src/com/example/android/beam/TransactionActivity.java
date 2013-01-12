@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 
 public class TransactionActivity extends Activity {
+	
 	Thread t;
 	private SharedPreferences mPreferences;
 	

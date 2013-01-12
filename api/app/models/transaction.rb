@@ -33,6 +33,22 @@ class Transaction < ActiveRecord::Base
     sender.balance > amount
   end
 
+  def sender_name
+    if sender.nil?
+      ""
+    else
+      sender.name
+    end
+  end
+
+  def receiver_name
+    if receiver.nil?
+      ""
+    else
+      receiver.name
+    end
+  end
+
 private
   def set_status
     self.status = 0 unless status.present?

@@ -7,9 +7,10 @@ Tapitout::Application.routes.draw do
   end
 
   resources :token_authentications, :only => [:create, :destroy]
-  resources :transactions, only: [:create] do
+  resources :transactions, only: [:show, :create] do
     member do
       post 'confirm'
+      post 'receive'
     end
   end
   
