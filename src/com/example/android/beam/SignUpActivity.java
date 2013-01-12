@@ -85,7 +85,7 @@ public class SignUpActivity extends Activity {
 			JSONObject jObject = new JSONObject(response);
 			
 			SharedPreferences.Editor editor = mPreferences.edit();
-			editor.putString("auth_token", jObject.getString("auth_token"));
+			editor.putString("auth_token", jObject.getString("authentication_token"));
 			editor.putString("email", jObject.getString("email"));
 			editor.putString("name", jObject.getString("name"));
 			editor.putInt("balance", jObject.getInt("balance"));
