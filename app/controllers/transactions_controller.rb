@@ -37,7 +37,7 @@ class TransactionsController < ApplicationController
       if @transaction.valid?
         @transaction.save
 
-        if transaction.process?(old_status)
+        if @transaction.process?(old_status)
           @transaction.receiver.balance += @transaction.amount
           @transaction.receiver.save
           current_user.balance -= @transaction.amount
