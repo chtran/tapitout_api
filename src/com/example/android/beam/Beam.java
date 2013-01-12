@@ -16,6 +16,7 @@
 
 package com.example.android.beam;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.nfc.NdefMessage;
@@ -48,7 +49,7 @@ public class Beam extends Activity implements CreateNdefMessageCallback,
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.welcome);
 
         mInfoText = (TextView) findViewById(R.id.textView);
         // Check for available NFC Adapter
@@ -68,7 +69,8 @@ public class Beam extends Activity implements CreateNdefMessageCallback,
     /**
      * Implementation for the CreateNdefMessageCallback interface
      */
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public NdefMessage createNdefMessage(NfcEvent event) {
         Time time = new Time();
         time.setToNow();
