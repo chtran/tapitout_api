@@ -36,6 +36,14 @@ class TransactionsController < ApplicationController
       @transaction.status = params[:transaction][:status]
       if @transaction.valid?
         @transaction.save
+
+        if transaction.process?(old_status)
+          @transaction.receiver.balance += @transaction.amount
+          @transaction.receiver.save
+          current_user.balance -= @transaction.amount
+          current_user.save
+        end
+
         respond_to do |format|
           format.json { render "transaction" }
         end
