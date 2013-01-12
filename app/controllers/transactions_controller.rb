@@ -47,5 +47,4 @@ class TransactionsController < ApplicationController
       end
     end
   end
-
 end

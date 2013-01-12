@@ -53,5 +53,4 @@ private
   def set_status
     self.status = 0 unless status.present?
   end
-  
 end
