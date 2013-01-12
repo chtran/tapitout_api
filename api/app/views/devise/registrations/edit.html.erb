@@ -6,10 +6,6 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
-  <% if resource.class.reconfirmable && resource.unconfirmed_email.present? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
@@ -21,13 +17,6 @@
 
   <div><%= f.submit "Update" %></div>
 <% end %>
-
-<p>
-<%= link_to "Generate Token", token_authentications_path(:user_id => current_user.id), :method => :post, :confirm => "Are you sure?" %>
-<%= link_to "Delete Token", token_authentications_path(current_user), :method => :delete, :confirm => "Are you sure?" %>
-<%- if resource.authentication_token %>
-  <p> Use this url: <br />
-  <%= link_to "http://localhost:3000#{root_path(:auth_token => resource.authentication_token)}", root_path(:auth_token => resource.authentication_token) %>
 
 <h3>Cancel my account</h3>
 
