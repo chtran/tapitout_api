@@ -20,7 +20,7 @@
     <string name = "hint">Enter your amount</string>
     <string name = "yes">Yes!</string>
     <string name = "no">No!</string>
-    <string name = "question1">TICARD, WHAT\'S THE FIRST QUESTION??</string>
+    <string name = "question1">Do you want to confirm this transaction?</string>
 
 	<color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
