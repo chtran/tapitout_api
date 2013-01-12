@@ -18,12 +18,20 @@ class Transaction < ActiveRecord::Base
   validates :amount, :presence => true, :numericality => { :only_integer => true }
   # validates :receiver_id, :presence => true
   validates :sender_id, :presence => true
-  validates :status, :presence => true, :numericality => { :only_integer => true }, :inclusion => { :in => 0..2 }
+  validates :status, :presence => true, :numericality => { :only_integer => true }, :inclusion => { :in => 0..3 }
 
   belongs_to :sender, :class_name => "User"
   belongs_to :receiver, :class_name => "User"
 
   before_validation :set_status
+
+  def process?(old_status)
+    old_status != 1 && has_enough? && status == 1
+  end
+
+  def has_enough?
+    sender.balance > amount
+  end
 
 private
   def set_status

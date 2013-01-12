@@ -11,6 +11,7 @@ import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Parcelable;
 import android.text.format.Time;
@@ -21,11 +22,12 @@ public class WaitingActivity extends Activity implements CreateNdefMessageCallba
 	NfcAdapter mNfcAdapter;
 	private static final int MESSAGE_SENT = 1;
 	private Integer transactionId;
+	Thread t;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transaction);
+        setContentView(R.layout.waiting);
         
         Intent intent = getIntent();
         transactionId = intent.getIntExtra("transactionId", 0);
@@ -81,7 +83,7 @@ public class WaitingActivity extends Activity implements CreateNdefMessageCallba
         public void handleMessage(Message msg) {
             switch (msg.what) {
             case MESSAGE_SENT:
-                Toast.makeText(getApplicationContext(), "Message sent!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sending money...", Toast.LENGTH_LONG).show();
                 break;
             }
         }
@@ -106,12 +108,34 @@ public class WaitingActivity extends Activity implements CreateNdefMessageCallba
      * Parses the NDEF Message from the intent and prints to the TextView
      */
     void processIntent(Intent intent) {
-        Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES);
+        Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
         // only one message sent during the beam
         NdefMessage msg = (NdefMessage) rawMsgs[0];
-        // record 0 contains the MIME type, record 1 is the AAR, if present
-//        mInfoText.setText(new String(msg.getRecords()[0].getPayload()));
+        
+        transactionId = Integer.parseInt(new String(msg.getRecords()[0].getPayload()));
+    	t = new Thread() {
+			public void run() {
+				Looper.prepare();
+				Integer transactionId = confirmTransaction();
+				if(transactionId > 0)
+				{
+//			    	Intent intent = new Intent(getApplicationContext(), WaitingActivity.class);
+//			    	intent.putExtra("transactionId", transactionId);
+//			    	startActivity(intent);
+				}
+				else
+				{
+					Toast.makeText(getApplicationContext(), "Transaction failed to create.", Toast.LENGTH_LONG).show();
+				}
+				Looper.loop();
+			}
+		};
+		t.start();
+    }
+    
+    public Integer confirmTransaction()
+    {
+    	
     }
 	
 }
