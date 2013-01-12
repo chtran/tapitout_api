@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Connecting to database specified by database.yml
 
 
@@ -3621,3 +3622,5 @@ MultiJson::DecodeError (no object read at line 1, column 1 [load.c:1042]):
   Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
   Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (27.4ms)
   Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.5ms)
+=======
+>>>>>>> 91f199d2748f0aa3ff6d36e2840e63d03d3ed0ab

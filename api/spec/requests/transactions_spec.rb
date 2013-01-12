@@ -14,8 +14,9 @@ describe "Transactions" do
       @params = {
         :sender_id => @sender.id,
         :receiver_id => @receiver.id,
-        :amount => 1000
-        # AUTH TOKEN
+        :amount => 1000,
+        :email => @sender.email,
+        :auth_token => @sender.authentication_token
       }
     end
 
