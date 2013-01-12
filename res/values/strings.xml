@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Beam</string>
-    <string name="info">Ensure that Android Beam is enabled by turning it on in
-        the system Settings (select the setting icon above), then place this device up
-        against another Android device that supports Android Beam to send a
-        message.</string>
-    <string name="menu_settings">Android Beam settings</string>
+    <string name="app_name">TapItOut</string>
+    <string name="info">Peer-to-peer money transfers made easy</string>
+    <string name="menu_settings">Android TapItOut settings</string>
     <string name="button_addcard">Add Payment Method</string>
     <string name="button_transaction">Make A Transaction</string>
     <string name="button_quit">Quit</string>
+    <string name= "password">password</string>
+    <string name = "username">username</string>
+    <string name = "login">Login</string>
+    <string name ="signup">Sign Up</string>
+    <string name = "cpassword">confirm password</string>
+    <color name="white">#FFFFFF</color>
 </resources>
