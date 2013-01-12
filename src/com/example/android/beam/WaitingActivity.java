@@ -20,11 +20,15 @@ public class WaitingActivity extends Activity implements CreateNdefMessageCallba
 
 	NfcAdapter mNfcAdapter;
 	private static final int MESSAGE_SENT = 1;
+	private Integer transactionId;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction);
+        
+        Intent intent = getIntent();
+        transactionId = intent.getIntExtra("transactionId", 0);
         
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null) {

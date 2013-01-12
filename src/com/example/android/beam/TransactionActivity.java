@@ -12,16 +12,20 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class TransactionActivity extends Activity {
-
+	Thread t;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,20 +34,39 @@ public class TransactionActivity extends Activity {
     
     public void startWaiting(View view)
     {
+    	t = new Thread() {
+			public void run() {
+				Looper.prepare();
+				Integer transactionId = createTransaction();
+				if(transactionId > 0)
+				{
+			    	Intent intent = new Intent(getApplicationContext(), WaitingActivity.class);
+			    	intent.putExtra("transactionId", transactionId);
+			    	startActivity(intent);
+				}
+				else
+				{
+					Toast.makeText(getApplicationContext(), "Transaction failed to create.", Toast.LENGTH_LONG).show();
+				}
+				Looper.loop();
+			}
+		};
+		t.start();
+    }
+    
+    public int createTransaction()
+    {
     	try
 		{
-	    	EditText mEmailField = (EditText) findViewById(R.id.email);
-			EditText mPasswordField = (EditText) findViewById(R.id.password);
+	    	EditText mAmountField = (EditText) findViewById(R.id.transactionAmount);
 	 
-			String email = mEmailField.getText().toString();
-			String password = mPasswordField.getText().toString();
+			Integer transactionAmount = (int) (Double.parseDouble(mAmountField.getText().toString()) * 100.0);
 	 
 			DefaultHttpClient client = new DefaultHttpClient();
-			HttpPost post = new HttpPost(getString(R.string.api_base)+"/sessions");
+			HttpPost post = new HttpPost(getString(R.string.api_base)+"/transactions");
 			
-			List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-			params.add(new BasicNameValuePair("user[email]", mEmailField.getText().toString()));
-			params.add(new BasicNameValuePair("user[password]", mPasswordField.getText().toString()));
+			List<NameValuePair> params = new ArrayList<NameValuePair>(1);
+			params.add(new BasicNameValuePair("transaction[amount]", transactionAmount.toString()));
 			
 			post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 			post.setHeader("Accept", "application/json");
@@ -53,20 +76,14 @@ public class TransactionActivity extends Activity {
 			response = client.execute(post, responseHandler);
 			
 			JSONObject jObject = new JSONObject(response);
-			JSONObject sessionObject = jObject.getJSONObject("session");
+			JSONObject transactionObject = jObject.getJSONObject("transaction");
 			
-			SharedPreferences.Editor editor = mPreferences.edit();
-			editor.putString("auth_token", sessionObject.getString("auth_token"));
-			editor.putString("email", sessionObject.getString("email"));
-			editor.putString("name", sessionObject.getString("name"));
-			editor.putInt("balance", sessionObject.getInt("balance"));
-			
-			return true;
+			return transactionObject.getInt("id");
 		}
 		catch(Exception e)
 		{
 //			e.printStackTrace();
-			return false;
+			return -1;
 		}
     }
     
